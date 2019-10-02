@@ -13,9 +13,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
-dbConn.connect();
 
 app.get("/all", function (req, res) {
+  dbConn.connect();
   const query = `
   SELECT huisnummer.huisnummer, huisnummer.toevoeging, postcode.postcode, postcode.straat, plaats.plaats
   FROM huisnummer
@@ -37,6 +37,7 @@ app.get("/all", function (req, res) {
 });
 
 app.get("/:postcode/:huisnummer/:toevoeging?", function (req, res) {
+  dbConn.connect();
   let postcode = req.params.postcode;
   let huisnummer = req.params.huisnummer;
   let toevoeging = req.params.toevoeging;

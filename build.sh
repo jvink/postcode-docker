@@ -8,9 +8,11 @@ docker build -t postcode-web .
 # Back-end
 cd ../postcode-api
 
+npm install
+
 docker build -t postcode-api .
 
-# Database
+# # Database
 
 cd ../postcode-db
 

@@ -1,13 +1,21 @@
 version: "3"
 services:
+  db:
+    container_name: postcode_db
+    image: postcode-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: postcodeapi
+      MYSQL_PASSWORD: root
+    ports: [42333:3306]
   frontend:
     container_name: postcode_web
     build:
       context: ./postcode-web
       dockerfile: Dockerfile
-    image: jvink/postcode_web
+    image: postcode-web
     ports:
-      - "3000:3000"
+      - "80:80"
     volumes:
       - ./postcode-web:/usr/src/app
   backend:
@@ -15,19 +23,8 @@ services:
     build:
       context: ./postcode-api
       dockerfile: Dockerfile
-    image: jvink/postcode_api
+    image: postcode-api
     ports:
       - "4000:4000"
     volumes:
       - ./postcode-api:/usr/src/app
-  db:
-    container_name: postcode_db
-    image: mysql
-    volumes:
-      - "./db:/var/lib/mysql"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: postcodeapi
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-    ports: [42333:3306]
