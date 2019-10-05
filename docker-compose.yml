@@ -2,14 +2,14 @@ version: "3"
 services:
   postcode_db:
     container_name: postcode_db
-    image: mysql:5.7.27
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: postcodeapi
+      - MYSQL_DATABASE=postcodeapi
+      - MYSQL_ROOT_PASSWORD=root
+    image: mysql:5.7.27
     ports:
       - 3306:3306
     volumes:
+      - ./postcode-db:/docker-entrypoint-initdb.d
       - mysql-data:/var/lib/mysql
     networks:
       - app-network
@@ -23,7 +23,7 @@ services:
       - "80:80"
     volumes:
       - ./postcode-web:/usr/src/app
-    depends_on: 
+    depends_on:
       - postcode_api
     networks:
       - app-network
@@ -37,7 +37,7 @@ services:
       - "4000:4000"
     volumes:
       - ./postcode-api:/usr/src/app
-    depends_on: 
+    depends_on:
       - postcode_db
     networks:
       - app-network
@@ -46,5 +46,5 @@ networks:
   app-network:
     driver: bridge
 
-volumes: 
+volumes:
   mysql-data:

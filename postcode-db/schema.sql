@@ -1,5 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `postcodeapi`;
-USE `postcodeapi`;
+-- CREATE USER 'root'@'%' IDENTIFIED BY 'root';
+-- GRANT ALL ON . TO 'root'@'%';
+
+-- CREATE DATABASE  IF NOT EXISTS `postcodeapi`;
+-- USE `postcodeapi`;
 
 DROP TABLE IF EXISTS `plaats`;
 CREATE TABLE `plaats` (
@@ -36,14 +39,6 @@ INSERT INTO `plaats` VALUES (1,'Dordrecht'),(2,'Papendrecht');
 /*!40000 ALTER TABLE `plaats` ENABLE KEYS */;
 UNLOCK TABLES;
 
-LOCK TABLES `postcode` WRITE;
-/*!40000 ALTER TABLE `postcode` DISABLE KEYS */;
 INSERT INTO `postcode` VALUES ('3311JJ','Draai',1),('3319AP','Burgemeester Beelaertspark',1),('3355BN','Kamillehof',2);
-/*!40000 ALTER TABLE `postcode` ENABLE KEYS */;
-UNLOCK TABLES;
 
-LOCK TABLES `huisnummer` WRITE;
-/*!40000 ALTER TABLE `huisnummer` DISABLE KEYS */;
-INSERT INTO `huisnummer` VALUES (101,'3311JJ'),(163,'3319AP'),(5,'3355BN');
-/*!40000 ALTER TABLE `huisnummer` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `huisnummer` VALUES (101, NULL,'3311JJ'),(163, NULL, '3319AP'),(5, 'A','3355BN');
