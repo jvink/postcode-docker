@@ -1,6 +1,6 @@
 export function getAddress(zipcode, houseNumber, suffix) {
   return async (dispatch) => {
-    const URL = `postcode_api:4000/${zipcode}/${houseNumber}${suffix ? `/${suffix}` : ``}`;
+    const URL = `http://127.0.0.1:4000/${zipcode}/${houseNumber}${suffix ? `/${suffix}` : ``}`;
     dispatch({ type: "GET_ADDRESS_REQUEST" });
 
     try {
@@ -12,14 +12,14 @@ export function getAddress(zipcode, houseNumber, suffix) {
         dispatch({ type: "GET_ADDRESS_SUCCESS", data: response.result });
       }
     } catch (error) {
-
+      dispatch({ type: "GET_ADDRESS_ERROR", error });
     }
   }
 }
 
 export function getAllAddresses() {
   return async (dispatch) => {
-    const URL = `postcode_api:4000/all`;
+    const URL = `http://127.0.0.1:4000/all`;
     dispatch({ type: "GET_ALL_ADDRESSES_REQUEST" });
 
     try {
@@ -31,7 +31,7 @@ export function getAllAddresses() {
         dispatch({ type: "GET_ALL_ADDRESSES_SUCCESS", data: response.result });
       }
     } catch (error) {
-
+      dispatch({ type: "GET_ALL_ADDRESSES_ERROR", error });
     }
   }
 }

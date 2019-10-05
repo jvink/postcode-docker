@@ -1,4 +1,4 @@
-FROM node:10.13.0 AS build
+FROM node:10.13.0
 
 COPY package*.json ./
 
@@ -8,9 +8,6 @@ COPY . .
 
 RUN npm run build
 
-FROM nginx:alpine
-COPY --from=build ./build /usr/share/nginx/html 
-
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "server.js"]

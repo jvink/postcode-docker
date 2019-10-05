@@ -2,7 +2,7 @@ version: "3"
 services:
   postcode_db:
     container_name: postcode_db
-    image: mysql:latest
+    image: mysql:5.7.27
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: root
