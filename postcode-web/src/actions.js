@@ -1,6 +1,6 @@
 export function getAddress(zipcode, houseNumber, suffix) {
   return async (dispatch) => {
-    const URL = `http://145.137.80.164:4000/${zipcode}/${houseNumber}${suffix ? `/${suffix}` : ``}`;
+    const URL = `postcode_api:4000/${zipcode}/${houseNumber}${suffix ? `/${suffix}` : ``}`;
     dispatch({ type: "GET_ADDRESS_REQUEST" });
 
     try {
@@ -19,7 +19,7 @@ export function getAddress(zipcode, houseNumber, suffix) {
 
 export function getAllAddresses() {
   return async (dispatch) => {
-    const URL = `http://145.137.80.164:4000/all`;
+    const URL = `postcode_api:4000/all`;
     dispatch({ type: "GET_ALL_ADDRESSES_REQUEST" });
 
     try {

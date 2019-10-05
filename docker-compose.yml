@@ -1,14 +1,19 @@
 version: "3"
 services:
-  db:
+  postcode_db:
     container_name: postcode_db
-    image: postcode-db
+    image: mysql:latest
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: postcodeapi
       MYSQL_PASSWORD: root
-    ports: [42333:3306]
-  frontend:
+      MYSQL_DATABASE: postcodeapi
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+  postcode_web:
     container_name: postcode_web
     build:
       context: ./postcode-web
@@ -18,7 +23,11 @@ services:
       - "80:80"
     volumes:
       - ./postcode-web:/usr/src/app
-  backend:
+    depends_on: 
+      - postcode_api
+    networks:
+      - app-network
+  postcode_api:
     container_name: postcode_api
     build:
       context: ./postcode-api
@@ -28,3 +37,14 @@ services:
       - "4000:4000"
     volumes:
       - ./postcode-api:/usr/src/app
+    depends_on: 
+      - postcode_db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes: 
+  mysql-data:
