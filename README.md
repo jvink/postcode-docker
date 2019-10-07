@@ -8,6 +8,3 @@ Containers starten:
 
 Containers starten:
 ### `sh stop.sh`
-
-Known Issues:
-- Database connection error
