@@ -4,10 +4,10 @@ Images aanmaken:
 ### `sh build.sh`
 
 Containers starten:
-### `sh run-containers.sh`
+### `sh start.sh`
 
 Containers starten:
-### `sh stop-containers.sh`
+### `sh stop.sh`
 
 Known Issues:
 - Database connection error
