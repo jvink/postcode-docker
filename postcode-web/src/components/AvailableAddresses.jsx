@@ -10,7 +10,7 @@ function AvailableAddresses({ loading, error, allAddresses }) {
         </Spinner>
       }
       {error &&
-        <p>{error}</p>}
+        <p>Er is een fout opgetreden.</p>}
       {(!loading && allAddresses) &&
         <>
           <h5>Beschikbare adressen:</h5>

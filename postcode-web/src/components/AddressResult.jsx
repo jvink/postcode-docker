@@ -9,7 +9,7 @@ function AddressResult({ huisnummer, plaats, postcode, straat, toevoeging, loadi
           <span className="sr-only">Loading...</span>
         </Spinner>}
       {error &&
-        <p>{error}</p>}
+        <p>Er is een fout opgetreden.</p>}
       {(!loading && straat) &&
         <>
           <Container>
