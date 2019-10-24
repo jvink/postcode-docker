@@ -13,7 +13,7 @@ setup-api:
 test-api:
   stage: test-api
   dependencies:
-    - npm
+    - setup-api
   before_script:
     - cd postcode-api/
   script:
