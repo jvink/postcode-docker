@@ -2,7 +2,7 @@ image: node:8.9.4
 
 stages:
   - npm
-  - test
+  - test-api
 
 npm:
   stage: npm
@@ -19,9 +19,11 @@ npm:
       - postcode-api/node_modules/
       - postcode-web/node_modules/
 
-test:
-  stage: test
+test-api:
+  stage: test-api
   dependencies:
     - npm
+  before_script:
+    - cd postcode-api/
   script:
     - npm test
