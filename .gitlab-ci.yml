@@ -1,20 +1,16 @@
 image: node:8.9.4
 
-stages:
-  - setup-api
-  - test-api
+cache:
+  paths:
+  - postcode-api/node_modules/
 
-setup-api:
-  stage: setup-api
-  script:
-    - cd postcode-api/
-    - npm install
+stages:
+  - test-api
 
 test-api:
   stage: test-api
-  dependencies:
-    - setup-api
   before_script:
     - cd postcode-api/
+    - npm install
   script:
     - npm test
