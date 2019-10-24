@@ -1,23 +1,14 @@
 image: node:8.9.4
 
 stages:
-  - npm
+  - setup-api
   - test-api
 
-npm:
-  stage: npm
+setup-api:
+  stage: setup-api
   script:
+    - cd postcode-api/
     - npm install
-  cache:
-    paths:
-      - postcode-api/node_modules/
-      - postcode-web/node_modules/
-  artifacts:
-    expire_in: 1 days
-    when: on_success
-    paths:
-      - postcode-api/node_modules/
-      - postcode-web/node_modules/
 
 test-api:
   stage: test-api
