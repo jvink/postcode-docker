@@ -10,12 +10,14 @@ npm:
     - npm install
   cache:
     paths:
-      - node_modules/
+      - postcode-api/node_modules/
+      - postcode-web/node_modules/
   artifacts:
     expire_in: 1 days
     when: on_success
     paths:
-      - node_modules/
+      - postcode-api/node_modules/
+      - postcode-web/node_modules/
 
 test:
   stage: test
