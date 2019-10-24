@@ -3,14 +3,24 @@ image: node:8.9.4
 cache:
   paths:
   - postcode-api/node_modules/
+  - postcode-web/node_modules/
 
 stages:
   - test-api
+  - test-web
 
 test-api:
   stage: test-api
   before_script:
     - cd postcode-api/
+    - npm install
+  script:
+    - npm test
+
+test-web:
+  stage: test-web
+  before_script:
+    - cd postcode-web/
     - npm install
   script:
     - npm test
