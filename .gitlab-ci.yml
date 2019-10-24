@@ -7,7 +7,6 @@ cache:
 
 stages:
   - test-web
-  - lint-web
   - test-api
 
 test-web:
@@ -16,15 +15,7 @@ test-web:
     - cd postcode-web/
     - npm install
   script:
-    - npm test
-
-lint-web:
-  stage: lint-web
-  before_script:
-    - cd postcode-web/
-    - npm install
-  script:
-    - npm lint
+    - npm test-api
 
 test-api:
   stage: test-api
