@@ -16,7 +16,7 @@ test-web:
     - cd postcode-web/
     - npm install
   script:
-    - npm test-api
+    - npm test
 
 test-api:
   stage: test-api
