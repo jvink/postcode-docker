@@ -8,6 +8,7 @@ cache:
 stages:
   - test-web
   - test-api
+  - lint-api
   - build-web
 
 test-web:
@@ -25,6 +26,14 @@ test-api:
     - npm install
   script:
     - npm test
+
+lint-api:
+  stage: lint-api
+  before_script:
+    - cd postcode-api/
+    - npm install
+  script:
+    - ./node_modules/.bin/eslint index.js
 
 build-web:
   stage: build-web
