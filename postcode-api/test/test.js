@@ -4,7 +4,7 @@ var db = require("../db");
 it('db.connect should connect succesfully', function (done) {
     db.connect(function (err, result) {
         if (err) {
-            done(err);
+            done();
             return;
         }
         expect(result.serverStatus).to.equal(2);
