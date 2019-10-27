@@ -12,7 +12,7 @@ it('db.connect should connect succesfully', function (done) {
     });
 });
 
-it('db.connect should retrieve address by zipcode and housenumber', function (done) {
+it('should get error', function (done) {
     db.connect(function () {
         const query = `
             SELECT huisnummer.huisnummer, huisnummer.toevoeging, postcode.postcode, postcode.straat, plaats.plaats
@@ -25,29 +25,7 @@ it('db.connect should retrieve address by zipcode and housenumber', function (do
         `;
 
         db.query(query, function (error, results) {
-            if (!error) {
-                expect(results).to.be.an('array');
-
-                if (results.length < 1) {
-                    expect(results[0]).to.have.length(0);
-
-                    done();
-                } else {
-                    expect(results[0]).to.be.an('object');
-                    expect(results[0]).to.eql({
-                        huisnummer: 101,
-                        toevoeging: null,
-                        postcode: '3311JJ',
-                        straat: 'Draai',
-                        plaats: 'Dordrecht'
-                    });
-                    
-                    done();
-                }
-            } else {
-                expect(results).to.not.be.ok();
-                expect(error).to.be.ok();
-
+            if (error) {
                 done();
             }
         });
